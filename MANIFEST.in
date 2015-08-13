@@ -1,0 +1,3 @@
+include gunicorn_config.py
+recursive-include rps/templates *
+recursive-include rps/static *

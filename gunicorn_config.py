@@ -1,0 +1,9 @@
+workers = 1
+worker_class = 'socketio.sgunicorn.GeventSocketIOWorker'
+bind = 'unix:/tmp/gunicorn.sock'
+#bind = '127.0.0.1:8080'
+pidfile = '/tmp/gunicorn.pid'
+debug = False
+loglevel = 'debug'
+errorlog = '/tmp/gunicorn.log'
+daemon = True

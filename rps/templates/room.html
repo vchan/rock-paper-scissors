@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}{{ game_id }}{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    window.room = "{{ game_id }}";
+</script>
+<script src="/static/js/rps.js"></script>
+{% endblock %}
+
+{% block content %}
+<header>
+  <p id="header">Rock, Paper, Scissors</p>
+  <p>Invite someone to this game with this link:<br/>
+  {{ request.url }}
+  </p>
+</header>
+<hr/>
+<div style="width: 700px; height: 410px;">
+    <div style="float: left; width: 450px; height: 100%; text-align: center; position: relative;">
+        <div id="play-field">
+            <p id="opponent-name">Waiting for an opponent...</p>
+            <p id="opponent-status" class="status">Ready</p>
+            <p id="opponent-move" class="move"></p>
+            <div id="game-result">
+                <p id="game-result-text"></p>
+                <p id="instructions">Click Rock, Paper, or Scissors to start a new game</p>
+            </div>
+        </div>
+        <form id="rps" style="width: 450px; position: absolute; bottom: 10px;
+            left: 50%; margin-left: -225px;">
+            <p id="player-status" class="status">Ready</p>
+            <p id="player-move" class="move"></p>
+            <div style="text-align: center;">
+                <button class="btn btn-primary btn-lg move-btn">Rock</button>
+                <button class="btn btn-primary btn-lg move-btn">Paper</button>
+                <button class="btn btn-primary btn-lg move-btn">Scissors</button>
+            </div>
+        </form>
+        <div id="record" style="height: 25px;">
+            Wins: <span id="wins">0</span> Draws: <span id="draws">0</span>
+            Losses: <span id="losses">0</span>
+        </div>
+    </div>
+
+    <div id="chat" style="float: right;">
+        <div id="nickname">
+            <form id="set-nickname" class="wrap">
+                <p>Please type in your nickname and press enter to talk smack.</p>
+                <input id="nick">
+                <p id="nickname-err">Nickname already in use</p>
+            </form>
+        </div>
+        <div id="connecting">
+            <div class="wrap">Connecting to socket.io server</div>
+        </div>
+
+        <div id="messages">
+            <div id="nicknames"><span>Online:</span></div>
+            <div id="lines"></div>
+        </div>
+
+        <form id="send-message">
+            <input id="message">
+            <button>Send</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
